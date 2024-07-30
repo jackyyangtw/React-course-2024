@@ -11,9 +11,9 @@ export default function NewProject({ onAddProject, onCancel }) {
         const title = titleRef.current.value;
         const description = textareaRef.current.value;
         const dueDate = dueDateRef.current.value;
-        const id = Math.floor(Math.random() * 1000);
+        const id = Math.floor(Math.random() * 1000).toString();
         if (!title || !description || !dueDate) return;
-        onAddProject({ title, description, dueDate, id, tasks: [] });
+        onAddProject({ title, description, dueDate, id });
     };
     return (
         <>

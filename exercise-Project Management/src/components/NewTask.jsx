@@ -1,24 +1,28 @@
 import { useState } from "react";
 
-export default function NewTask({ onAdd }) {
-    const [task, setTask] = useState("");
+export default function NewTask({ onAddTask, project }) {
+    const [taskText, seTaskText] = useState("");
     const handleOnChage = (e) => {
-        setTask(e.target.value);
+        seTaskText(e.target.value);
     };
-    const handleOnAdd = () => {
-        onAdd(task);
-        setTask("");
+    const handleOnAddTask = () => {
+        onAddTask({
+            text: taskText,
+            id: Math.random().toString(),
+            projectId: project.id,
+        });
+        seTaskText("");
     };
     return (
         <div className="flex items-center gap-4">
             <input
                 type="text"
                 className="w-64 px-2 py-1 rounded-sm bg-stone-200"
-                value={task}
+                value={taskText}
                 onChange={handleOnChage}
             />
             <button
-                onClick={handleOnAdd}
+                onClick={handleOnAddTask}
                 className="text-stone-700 hover:text-stone-950"
             >
                 Add Task

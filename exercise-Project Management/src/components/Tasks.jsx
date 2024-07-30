@@ -1,11 +1,10 @@
 import NewTask from "./NewTask.jsx";
 
-export default function Tasks({ tasks }) {
-    const handleAdd = (task) => {};
+export default function Tasks({ tasks, onAddTask, project, onDeleteTask }) {
     return (
         <section>
             <h2 className="text-2xl font-bold text-stone-700 mb-4">Tasks</h2>
-            <NewTask onAdd={handleAdd} />
+            <NewTask onAddTask={onAddTask} project={project} />
             {tasks.length === 0 && (
                 <p className="text-stone-800 my-4">
                     This project does not have any tasks yet.
@@ -16,7 +15,10 @@ export default function Tasks({ tasks }) {
                     {tasks.map((task) => (
                         <li key={task.id} className="flex justify-between my-4">
                             <span>{task.text}</span>
-                            <button className="text-stone-700 hover:text-red-500">
+                            <button
+                                onClick={() => onDeleteTask(task.id)}
+                                className="text-stone-700 hover:text-red-500"
+                            >
                                 Clear
                             </button>
                         </li>

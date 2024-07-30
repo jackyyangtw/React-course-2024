@@ -1,6 +1,6 @@
 import Button from "./Button";
 export default function ProjectsSidebar({
-    onAddProject,
+    onGoToAddProjectPage,
     projects,
     onGoToProject,
 }) {
@@ -10,7 +10,7 @@ export default function ProjectsSidebar({
                 Your Projects
             </h2>
             <div>
-                <Button onClick={onAddProject}>+ Add Project</Button>
+                <Button onClick={onGoToAddProjectPage}>+ Add Project</Button>
             </div>
             <ul>
                 {projects.map((project) => (
