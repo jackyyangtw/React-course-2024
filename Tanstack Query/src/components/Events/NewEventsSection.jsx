@@ -5,10 +5,11 @@ import EventItem from "./EventItem.jsx";
 import { fetchEvents } from "../../utils/http.js";
 export default function NewEventsSection() {
     const { data, isPending, error, isError } = useQuery({
-        queryFn: fetchEvents,
-        queryKey: ["events"], // cache key
-        staleTime: 5000, // 5 seconds to send the request
-        // gcTime: 30000, // 30 seconds to cahce the data
+        queryFn: ({ signal, queryKey }) =>
+            fetchEvents({ signal, ...queryKey[1] }),
+        queryKey: ["events", { max: 3 }], // cache key
+        staleTime: 5000, // data 過期前的時間，過期後會重新 fetch
+        // gcTime: 30000, // data 過期後保存的時間，過期後會被刪除
     });
 
     let content;

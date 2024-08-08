@@ -10,8 +10,9 @@ export default function FindEventSection() {
 
     // isLoading: 當 disable 的時候不會為 true，因此不會顯示 loading indicator。但 isPending 則會顯示 loading indicator
     const { data, isLoading, error, isError } = useQuery({
-        queryFn: ({ signal }) => fetchEvents({ signal, searchTerm }),
-        queryKey: [{ search: searchTerm }, "events"], // 同時使用 search term 和 events 作為 cache key
+        queryKey: ["events", { searchTerm }], // 同時使用 search term 和 events 作為 cache key
+        queryFn: ({ signal, queryKey }) =>
+            fetchEvents({ signal, ...queryKey[1] }),
         enabled: searchTerm !== undefined, // 當 search term 為空時不發送 request
     });
 
