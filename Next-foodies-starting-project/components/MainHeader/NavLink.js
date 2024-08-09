@@ -8,7 +8,7 @@ export default function NavLink({ href, children }) {
         <Link
             href={href}
             className={
-                pathname.startsWith(href)
+                pathname === href
                     ? `${classes.link} ${classes.active}`
                     : classes.link
             }
