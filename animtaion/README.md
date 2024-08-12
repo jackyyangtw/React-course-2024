@@ -1,0 +1,2 @@
+-   framer motion playground: https://codesandbox.io/p/sandbox/animations-framer-motion-playground-start-w8dcfz?file=%2Fsrc%2Findex.js
+-   offical docs: https://www.framer.com/motion/
