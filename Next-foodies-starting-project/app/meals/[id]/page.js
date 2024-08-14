@@ -1,6 +1,6 @@
 import classes from "./page.module.css";
 import Image from "next/image";
-import { getMeal } from "@/lib/meals";
+import { getMeal, getMeals } from "@/lib/meals";
 import { notFound } from "next/navigation";
 
 // dynamic metadata
@@ -14,6 +14,13 @@ export const generateMetadata = async ({ params }) => {
         description: `Details for meal with ID ${meal.description}`,
     };
 };
+
+export async function generateStaticParams() {
+    const meals = await getMeals();
+    return meals.map((meal) => ({
+        id: meal.slug, // 修改這裡以返回物件內直接包含 `id` 屬性
+    }));
+}
 
 export default async function MealsDetails({ params }) {
     const meal = await getMeal(params.id);
